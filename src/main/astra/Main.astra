@@ -1,0 +1,35 @@
+/*
+COMP30240 Multi Agent Systems Project 2021-2022
+
+Students:
+John Engracio 18452452
+Tom Furlong 18366263
+
+*/
+
+agent Main {
+    module Console C;
+    module System S;
+	module EIS ei;
+    module Debug debug;
+
+	rule +!main(list args) {
+		ei.launch("vw","dependency/vacuumworld-1.2.0.jar");
+        ei.join();
+		ei.init([generation("no")]);
+		ei.startEnv();
+		
+		C.println("Initializing Environment...");
+		S.sleep(1000);
+
+		S.createAgent("Henry", "Zone1");
+		S.createAgent("Decco", "Zone2");
+		S.createAgent("Lloyd", "Zone3");
+		S.createAgent("Harry", "Zone4");
+		S.setMainGoal("Henry", ["Henry"]);
+		S.setMainGoal("Decco", ["Decco"]);
+		S.setMainGoal("Lloyd", ["Lloyd"]);
+		S.setMainGoal("Harry", ["Harry"]);
+		
+	}
+}
